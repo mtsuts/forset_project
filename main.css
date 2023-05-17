@@ -1,0 +1,196 @@
+body {
+  height: 100vh;
+  font-family: 'FiraGO', sans-serif;
+  font-feature-settings: 'case' on;
+}
+
+.main-container {
+  padding: 30px 20px 0px 20px;
+  height: 100%;
+  min-width: 900px;
+  max-width: 1000px;
+}
+
+.about-us {
+  font-size: 15px;
+  text-align: left;
+}
+
+.last-update {
+  font-size: 15px;
+  text-align: right;
+}
+
+.message {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.message-text {
+  display: block;
+  font-size: 12px;
+  margin-top: 10px;
+  color: #a29f9f;
+  width: 500px;
+}
+
+.add-message {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.add-message-btn {
+  color: white;
+  font-size: 20px;
+  background-color: #444444;
+  border-radius: 5px;
+  border: none;
+  font: bold;
+  font-feature-settings: 'case' on
+}
+
+.message-rectangle {
+  display: flex;
+  height: 43px;
+  margin-top: 12px;
+}
+
+.message-box.label {
+  width: 16px !important;
+  background-color: #97c0d8;
+}
+
+.message-box.scare {
+  width: 16px !important;
+  background-color: #36c1c1;
+}
+
+.message-box.information {
+  width: 16px !important;
+  background-color: #7dceb5;
+}
+
+.message-box.anti-western {
+  width: 16px !important;
+  background-color: #eda6e0;
+}
+
+.message-box.values {
+  width: 16px !important;
+  background-color: #fcae60;
+}
+
+.text-message {
+  text-align: left;
+  margin-left: 4px;
+  width: 132px;
+  inline-size: 120px;
+  flex-wrap: wrap;
+}
+
+.circle-size-text {
+  margin-top: 30px;
+  font-size: 12px;
+  color: #a29f9f;
+}
+
+.government {
+  font-size: 12px;
+  text-align: left;
+  margin-top: 17px;
+}
+
+.others {
+  font-size: 12px;
+  text-align: right;
+  margin-top: 17px;
+}
+
+.terminologies {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 9px;
+  width: 450px;
+  border-bottom-width: 10px;
+  border-bottom-color: transparent;
+  border-bottom-style: solid;
+  transform: translateY(14px)
+}
+
+.message-line {
+  margin-top: 8px;
+}
+
+.horizontal-space-line {
+  background-color: black;
+  min-width: 900px;
+  max-width: 1000px;
+  height: 0.05em;
+}
+
+
+.vertical-space-line {
+  background-color: transparent;
+  width: 164px;
+  position: relative
+}
+
+/* .inside-line-color {
+  width: 1px;
+  margin-top: 25px;
+  height: 100%;
+  background-color: black;
+  position: absolute;
+  z-index: inherit;
+  transform: translateX(82px)
+} */
+
+.right-line {
+  border-right: 1px solid Black;
+}
+
+
+.message-author {
+  font-size: 11px;
+  text-align: center;
+  margin-top: 30px
+}
+
+.message-quote {
+  text-align: left;
+  font-size: 12px;
+}
+
+.quote-date {
+  font-size: 11px;
+  font-weight: 3F00
+}
+
+.quotes-section {
+  margin-top: 20px;
+}
+
+.quote-underline-tv {
+  display: flex;
+}
+
+.tv {
+  margin-left: 2px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  color: #001dc8;
+  cursor: pointer
+}
+
+.tv a {
+  text-decoration: none;
+  color: #001dc8;
+}
+
+.quote-underline {
+  height: 0.05em;
+  width: 80%;
+  background-color: #001dc8;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
