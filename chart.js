@@ -1,6 +1,6 @@
 function forceGraph(nodes, params) {
   const container = d3.select(params.container);
-
+  const formatTime = d3.timeFormat("%d %B, %Y")
   // define metrics
 
   const bounding = container.node().getBoundingClientRect()
@@ -45,6 +45,7 @@ function forceGraph(nodes, params) {
     .join("g")
     .attr("class", "node")
     .attr('cursor', 'pointer')
+    .attr('id', (d) => d.id)
 
   const circle = node
     .append("circle")
@@ -71,12 +72,8 @@ function forceGraph(nodes, params) {
   d3.select('g').selectAll('.node')
 
 
-  // d3.select('.circle-node').attr('stroke', 'black').attr('opacity', 1)
+  function quotesOpened(d) {
 
-
-  const formatTime = d3.timeFormat("%d %B, %Y")
-
-  node.on("click", function (e, d) {
     const sideOne = 'ხელისუფლების წარმომადგენელი'
     const sideTwo = 'სხვები'
     const quotes_first = d3.select('#quotes_first')
@@ -84,28 +81,25 @@ function forceGraph(nodes, params) {
     const sectionFirst = 1
     const sectionSecond = 2
 
-
-
-
     function sectionQuotes(section, side, sectionNumber) {
-      return section
+      section
         .selectAll("div.quote")
         .data(d.quotes.filter(d => d.side === side))
         .join("div")
         .attr("class", "quote")
         .html((x) =>
           `<div class="row align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
-      <div class="col-3 message-author">  ${x.author} </div>
-      <div class="col-8 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${x.quote}</div> 
-      </div>
-      <div class="quote-underline-tv">
-      <div class='quote-underline'> </div>
-      <div class='tv'> <a href="${x.link}" target="_blank" target="_blank"> ${x.tv} </a> </div>
-      </div>`)
+    <div class="col-3 message-author">  ${x.author} </div>
+    <div class="col-8 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${x.quote}</div> 
+    </div>
+    <div class="quote-underline-tv">
+    <div class='quote-underline'> </div>
+    <div class='tv'> <a href="${x.link}" target="_blank" target="_blank"> ${x.tv} </a> </div>
+    </div>`)
     }
 
     d3.selectAll('.circle-node').attr('stroke', 'none').attr('opacity', 0.4)
-    d3.select(this).select('.circle-node').attr('stroke', 'black').attr('opacity', 1)
+    d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1)
 
 
     sectionQuotes(quotes_first, sideOne, sectionFirst)
@@ -116,20 +110,13 @@ function forceGraph(nodes, params) {
 
     d3.select('#message_line')
       .html(`<div> ${d.message} </div>`)
+  }
 
 
-    // function colorWord(quote) {
-    //   const upTerFirst = d.terminology.split(' ').splice(0, 1).join(' ')
-    //   const test = upTerFirst.substring(0, upTerFirst.length-4)
-    //   console.log(upTerFirst)
-    //   console.log(test)
-    //   if (quote.indexOf(upTerFirst || upTerFirst.substring(0, upTerFirst < 11 ? upTerFirst.length - 6 : upTerFirst.length - 3)) > -1)
-    //     console.log('test')
-    //   return quote
-    // }
+  quotesOpened(nodes.find(d => d.terminology === "ნაციონალური მოძრაობა"),)
 
-
-
+  node.on("click", function (e, d) {
+    quotesOpened(d)
   });
 
 
@@ -149,6 +136,8 @@ function forceGraph(nodes, params) {
     .on("tick", function ticked() {
       node.attr("transform", (d) => `translate(${d.x}, ${d.y})`);
     });
+
+
 }
 
 

@@ -75,7 +75,8 @@ function init() {
           message: d[1][0].message,
           quotes: d[1],
           side: d[1][0].side,
-          color: d[1][0].color
+          color: d[1][0].color,
+          id: getRandomId()
         };
       });
       console.log(nodes);
@@ -86,5 +87,7 @@ function init() {
       forceGraph(nodes, container);
     });
 }
+
+
 
 

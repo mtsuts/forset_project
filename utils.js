@@ -86,3 +86,7 @@ function getDate(datestr) {
   const [year, month, day] = first
   return new Date(year, month, day)
 }
+
+function getRandomId() {
+  return 'node-' + Date.now() + Math.floor(Math.random() * 1000000)
+}
