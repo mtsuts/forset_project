@@ -7,8 +7,13 @@ body {
 .main-container {
   padding: 30px 20px 0px 20px;
   height: 100%;
-  min-width: 900px;
-  max-width: 1000px;
+  width: 990px !important;
+  max-width: 990px !important;
+  min-width: 990px !important
+}
+
+.svg-div {
+  height: 350px;
 }
 
 .about-us {

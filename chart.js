@@ -4,9 +4,10 @@ function forceGraph(nodes, params) {
   // define metrics
 
   const bounding = container.node().getBoundingClientRect()
+  console.log(params.container);
   const metrics = {
     width: bounding.width,
-    height: bounding.height / 2,
+    height: bounding.height,
     chartWidth: bounding.width * 0.7,
     chartHeight: bounding.height * 0.7
   };

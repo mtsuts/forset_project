@@ -79,9 +79,9 @@ function init() {
           id: getRandomId()
         };
       });
-      console.log(nodes);
+    
       const container = {
-        container: ".main-container",
+        container: ".svg-div",
       };
 
       forceGraph(nodes, container);
