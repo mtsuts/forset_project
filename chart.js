@@ -90,7 +90,7 @@ function forceGraph(nodes, params) {
         .attr("class", "quote")
         .html((x) =>
           `<div class="row align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
-    <div class="col-3 message-author">  ${x.author} </div>
+    <div class="col-3 message-author"> <img class="author-image" src = "./avatar.jpg"> </img> <div> ${x.author}</div> </div>
     <div class="col-8 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${colorWords(x.quote, d)}</div> 
     </div>
     <div class="quote-underline-tv">
@@ -117,12 +117,11 @@ function forceGraph(nodes, params) {
   }
 
 
-  quotesOpened(nodes.find(d => d.terminology === "ნაციონალური მოძრაობა"),)
+  quotesOpened(nodes.find(d => d.terminology === "მეორე ფრონტი"),)
 
   node.on("click", function (e, d) {
     quotesOpened(d)
   });
-
 
   d3
     .forceSimulation(nodes)

@@ -190,3 +190,9 @@ body {
   margin-top: 10px;
   margin-bottom: 20px;
 }
+
+.author-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
