@@ -91,12 +91,15 @@ function forceGraph(nodes, params) {
         .html((x) =>
           `<div class="row align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
     <div class="col-3 message-author">  ${x.author} </div>
-    <div class="col-8 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${x.quote}</div> 
+    <div class="col-8 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${colorWords(x.quote, d)}</div> 
     </div>
     <div class="quote-underline-tv">
     <div class='quote-underline'> </div>
     <div class='tv'> <a href="${x.link}" target="_blank" target="_blank"> ${x.tv} </a> </div>
     </div>`)
+    }
+    function colorWords(quote, d) {
+      return quote.replaceAll(`${d.terminology}`, `<span style="background-color: ${d.color}"> ${d.terminology} </span>`)
     }
 
     d3.selectAll('.circle-node').attr('stroke', 'none').attr('opacity', 0.4)
