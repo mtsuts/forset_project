@@ -99,7 +99,7 @@ function forceGraph(nodes, params) {
     </div>`)
     }
     function colorWords(quote, d) {
-      return quote.replaceAll(`${d.terminology}`, `<span style="background-color: ${d.color}"> ${d.terminology} </span>`)
+      return quote.replaceAll(`${d.terminology}`, `<span style="background-color: ${d.color}; opacity: 0.6"> ${d.terminology} </span>`)
     }
 
     d3.selectAll('.circle-node').attr('stroke', 'none').attr('opacity', 0.4)
