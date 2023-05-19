@@ -1,7 +1,9 @@
 function forceGraph(nodes, params) {
   const container = d3.select(params.container);
   const formatTime = d3.timeFormat("%d %B, %Y")
+  let simulation;
   // define metrics
+
 
   const bounding = container.node().getBoundingClientRect()
   console.log(params.container);
@@ -32,7 +34,7 @@ function forceGraph(nodes, params) {
       d3.min(nodes.map((d) => d.amount)),
       d3.max(nodes.map((d) => d.amount)),
     ])
-    .range([17, 45]);
+    .range([1, 65]);
 
   const fontSizeScale = d3.scaleLinear().domain([
     d3.min(nodes.map((d => d.amount))),
@@ -60,6 +62,7 @@ function forceGraph(nodes, params) {
     .append("text")
     .attr("font-size", (d) => fontSizeScale(d.amount))
     .attr("text-anchor", "middle")
+    .attr('class', 'quote-text')
     .attr('dy', "0.35em")
     .attr('dx', 0)
     .attr('x', 0)
@@ -89,14 +92,17 @@ function forceGraph(nodes, params) {
         .join("div")
         .attr("class", "quote")
         .html((x) =>
-          `<div class="row align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
-    <div class="col-3 message-author"> <img class="author-image" src = "./avatar.jpg"> </img> <div> ${x.author}</div> </div>
-    <div class="col-8 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${colorWords(x.quote, d)}</div> 
+          `
+    <div class="row align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
+    <div class="col-4 message-author"> <img class="author-image" src = "./avatar.jpg"> </img> <div> ${x.author}</div> </div>
+    <div class="col-8 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${colorWords(x.quote, d)}</div> </div>
     </div>
-    <div class="quote-underline-tv">
+
+    <div class="d-flex quote-underline-tv align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
     <div class='quote-underline'> </div>
-    <div class='tv'> <a href="${x.link}" target="_blank" target="_blank"> ${x.tv} </a> </div>
-    </div>`)
+    <div class='tv ${sectionNumber === 2 ? 'pr-1' : 'pl-1'}'> <a class="tv-link" href="${x.link}" target="_blank" > ${x.tv} </a> </div> 
+    </div>
+    `)
     }
     function colorWords(quote, d) {
       return quote.replaceAll(`${d.terminology}`, `<span style="background-color: ${d.color}; opacity: 0.6"> ${d.terminology} </span>`)
@@ -121,26 +127,28 @@ function forceGraph(nodes, params) {
 
   node.on("click", function (e, d) {
     quotesOpened(d)
+    forceSimul()
   });
 
-  d3
-    .forceSimulation(nodes)
-    // .force("charge", d3.forceManyBody().strength(13))
-    .force("center", d3.forceCenter(metrics.width / 2, metrics.height / 2))
-    .force(
-      "collision",
-      d3
-        .forceCollide()
-        .radius((d) => rScale(d.amount) + 21)
-        .iterations(2)
-    )
-    .force("x", d3.forceX().strength(0.01))
-    .force("y", d3.forceY().strength(0.2))
-    .on("tick", function ticked() {
-      node.attr("transform", (d) => `translate(${d.x}, ${d.y})`);
-    });
 
-
+  function forceSimul() {
+    simulation = d3
+      .forceSimulation(nodes)
+      .force("center", d3.forceCenter(metrics.width / 2, metrics.height / 2))
+      .force(
+        "collision",
+        d3
+          .forceCollide()
+          .radius((d) => rScale(d.amount) + 26)
+          .iterations(2)
+      )
+      .force("x", d3.forceX().strength(0.008))
+      .force("y", d3.forceY().strength(0.2))
+      .on("tick", function ticked() {
+        node.attr("transform", (d) => `translate(${d.x}, ${d.y})`);
+      });
+  }
+  forceSimul()
 }
 
 
