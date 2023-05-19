@@ -94,8 +94,12 @@ function forceGraph(nodes, params) {
         .html((x) =>
           `
     <div class="row align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
-    <div class="col-4 message-author"> <img class="author-image" src = "./avatar.jpg"> </img> <div> ${x.author}</div> </div>
-    <div class="col-8 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${colorWords(x.quote, d)}</div> </div>
+    
+    <div class="col-3 message-author"> <img class="author-image" src = "./avatar.jpg"> </img> 
+    <div class='author-name'> ${x.author}</div> 
+    </div>
+
+    <div class="col-9 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${colorWords(x.quote, d)}</div> </div>
     </div>
 
     <div class="d-flex quote-underline-tv align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 

@@ -63,6 +63,7 @@ body {
   display: flex;
   height: 43px;
   margin-top: 12px;
+  line-height: 1.2em;
 }
 
 .message-box.label {
@@ -97,6 +98,7 @@ body {
   inline-size: 120px;
   flex-wrap: wrap;
   font-feature-settings: 'case' on;
+  margin-top: 4px;
 }
 
 .circle-size-text {
@@ -229,4 +231,10 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 20px;
+}
+
+.author-name {
+  margin-top: 10px;
+  width: 80px;
+  line-height: 1em;
 }
