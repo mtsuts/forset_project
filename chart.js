@@ -6,12 +6,12 @@ function forceGraph(nodes, params) {
 
 
   const bounding = container.node().getBoundingClientRect()
-  console.log(params.container);
+
   const metrics = {
     width: bounding.width,
     height: bounding.height,
-    chartWidth: bounding.width * 0.7,
-    chartHeight: bounding.height * 0.7
+    chartWidth: bounding.width,
+    chartHeight: bounding.height
   };
 
   // create svg and append to container
@@ -50,14 +50,20 @@ function forceGraph(nodes, params) {
     .attr('cursor', 'pointer')
     .attr('id', (d) => d.id)
 
-  const circle = node
+  node
     .append("circle")
     .attr('class', 'circle-node')
-    .attr("r", (d) => rScale(d.amount + 7))
+    .attr("r", (d) => rScale(d.amount + 12))
     .attr('fill', (d) => d.quotes[0].color)
     .attr('opacity', 0.4)
+    .on('mouseover', function () {
+      d3.select(this).transition().duration("200").attr('r', (d) => rScale(d.amount + 17))
+    })
+    .on('mouseout', function () {
+      d3.select(this).transition().duration("100").attr("r", (d) => rScale(d.amount + 7))
+    })
 
-
+  let r;
   node
     .append("text")
     .attr("font-size", (d) => fontSizeScale(d.amount))
@@ -69,9 +75,10 @@ function forceGraph(nodes, params) {
     .attr('y', 0)
     .text((d) => d.terminology)
     .each(function (d) {
-      const r = rScale(d.amount + 7)
+      r = rScale(d.amount + 7)
       d3.select(this).call(wrap, r * 2, 0.35, 1.1)
     })
+
 
   d3.select('g').selectAll('.node')
 
@@ -94,8 +101,8 @@ function forceGraph(nodes, params) {
         .html((x) =>
           `
     <div class="row align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
-    
-    <div class="col-3 message-author"> <img class="author-image" src = "./avatar.jpg"> </img> 
+    <div class="col-3 message-author"> 
+    <img class="author-image" src = "./avatar.jpg"/> 
     <div class='author-name'> ${x.author}</div> 
     </div>
 
@@ -108,12 +115,18 @@ function forceGraph(nodes, params) {
     </div>
     `)
     }
+
     function colorWords(quote, d) {
       return quote.replaceAll(`${d.terminology}`, `<span style="background-color: ${d.color}; opacity: 0.6"> ${d.terminology} </span>`)
+
     }
 
     d3.selectAll('.circle-node').attr('stroke', 'none').attr('opacity', 0.4)
+
+
     d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1)
+
+    d3.select('.quotes-section').transition().duration(1000).style('opacity', 1)
 
 
     sectionQuotes(quotes_first, sideOne, sectionFirst)
@@ -124,6 +137,7 @@ function forceGraph(nodes, params) {
 
     d3.select('#message_line')
       .html(`<div> ${d.message} </div>`)
+
   }
 
 
@@ -131,7 +145,9 @@ function forceGraph(nodes, params) {
 
   node.on("click", function (e, d) {
     quotesOpened(d)
-    forceSimul()
+    d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
+
+    // forceSimul()
   });
 
 
@@ -143,7 +159,7 @@ function forceGraph(nodes, params) {
         "collision",
         d3
           .forceCollide()
-          .radius((d) => rScale(d.amount) + 26)
+          .radius((d) => rScale(d.amount) + 50)
           .iterations(2)
       )
       .force("x", d3.forceX().strength(0.008))
@@ -154,5 +170,7 @@ function forceGraph(nodes, params) {
   }
   forceSimul()
 }
+
+
 
 

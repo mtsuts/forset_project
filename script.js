@@ -13,9 +13,6 @@ function init() {
       const datum = JSON.parse(rep.substring(47).slice(0, -2));
       const newData = datum.table.rows;
 
-
-
-      console.log(newData)
       data = newData.map(function (d) {
         return {
           terminology: d.c[3].v,
@@ -29,11 +26,9 @@ function init() {
           color: d.c[6].v,
         };
       });
-      console.log(data);
+
 
       let terminology = {};
-
-
 
       data.forEach((d) => {
 
@@ -63,10 +58,8 @@ function init() {
           ];
         }
       });
-      console.log(terminology);
 
       const terminologyArray = Object.entries(terminology);
-      console.log(terminologyArray);
 
       const nodes = terminologyArray.map((d) => {
         return {
@@ -79,12 +72,24 @@ function init() {
           id: getRandomId()
         };
       });
-    
+
       const container = {
         container: ".svg-div",
       };
 
       forceGraph(nodes, container);
+
+      console.log(nodes)
+      // click on legend boxes
+
+      d3.selectAll('.message-row').on('click', function (e) {
+        const currentTarget = e.target
+        console.log(currentTarget)
+        // if(currentTarget.classList.contains('label')){
+
+        // }
+      })
+
     });
 }
 
