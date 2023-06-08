@@ -26,8 +26,7 @@ function init() {
           color: d.c[6].v,
         };
       });
-
-
+      
       let terminology = {};
 
       data.forEach((d) => {
@@ -80,16 +79,7 @@ function init() {
       forceGraph(nodes, container);
 
       console.log(nodes)
-      // click on legend boxes
-
-      d3.selectAll('.message-row').on('click', function (e) {
-        const currentTarget = e.target
-        console.log(currentTarget)
-        // if(currentTarget.classList.contains('label')){
-
-        // }
-      })
-
+     
     });
 }
 

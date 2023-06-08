@@ -115,6 +115,10 @@ body {
   font-feature-settings: 'case' on;
 }
 
+.circle-text {
+  display: block;
+}
+
 .government {
   font-size: 12px;
   text-align: left;
@@ -196,9 +200,7 @@ body {
 
 .quote-text {
   font-feature-settings: 'case' on;
-
 }
-
 
 .quote {
   margin-bottom: 15px;
@@ -249,4 +251,10 @@ body {
   margin-top: 10px;
   width: 80px;
   line-height: 1em;
+}
+
+.amountOfQuotes {
+  font-size: 15px;
+  font-weight: 100;
+  text-align: center;
 }
