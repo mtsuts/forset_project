@@ -286,3 +286,8 @@ body {
   font-weight: 100;
   text-align: center;
 }
+
+.make-shadow {
+  border: 1px solid;
+  box-shadow: 500px 100px red;
+}

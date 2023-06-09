@@ -162,25 +162,8 @@ function forceGraph(nodes, params) {
   quotesOpened(nodes.find(d => d.terminology === "მეორე ფრონტი"),)
 
   node.on("click", function (e, d) {
-    isClicked = true
-    quotesOpened(d)
-    d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
-    d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
-
-    d3
-    .forceSimulation(nodes)
-    .force("center", d3.forceCenter(metrics.width / 2, metrics.height / 2))
-    .force(
-      "collision",
-      d3
-        .forceCollide()
-        .radius((d) => rScale(d.amount) + 10)
-        .iterations(2)
-    )
-    .force("x", d3.forceX().strength(0.1))
-    .force("y", d3.forceY().strength(0.22))
-  });
-
+    onNodeClick(e, d)
+  })
 
   function forceSimul() {
     simulation = d3
@@ -210,10 +193,7 @@ function forceGraph(nodes, params) {
       return;
     })
     d3.selectAll(`.node.იარლიყის.მიკრობა`).attr('opacity', 1).on('click', function (e, d) {
-      isClicked = true
-      quotesOpened(d)
-      d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
-      d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
+      onNodeClick(e, d)
     })
   })
 
@@ -225,10 +205,7 @@ function forceGraph(nodes, params) {
       return;
     })
     d3.selectAll(`.node.შიშის.ჩანერგვა`).attr('opacity', 1).on('click', function (e, d) {
-      isClicked = true
-      quotesOpened(d)
-      d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
-      d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
+      onNodeClick(e, d)
     })
   })
 
@@ -240,10 +217,7 @@ function forceGraph(nodes, params) {
       return;
     })
     d3.selectAll(`.node.ინფორმაციით.მანიპულაცია`).attr('opacity', 1).on('click', function (e, d) {
-      isClicked = true
-      quotesOpened(d)
-      d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
-      d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
+      onNodeClick(e, d)
     })
   })
 
@@ -254,10 +228,7 @@ function forceGraph(nodes, params) {
       return;
     })
     d3.selectAll(`.node.ანტიდასავლური.განწყობები`).attr('opacity', 1).on('click', function (e, d) {
-      isClicked = true
-      quotesOpened(d)
-      d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
-      d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
+      onNodeClick(e, d)
     })
   })
 
@@ -268,29 +239,35 @@ function forceGraph(nodes, params) {
     d3.selectAll('.node').attr('opacity', 0.3).on('click', function () {
       return;
     })
-    d3.selectAll(`.node.ღირებულებებით.მანიპულაცია`).attr('opacity', 1).on('click', function (e, d) {
-      isClicked = true
-      quotesOpened(d)
-      d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
-      d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
-    })
+    d3.selectAll(`.node.ღირებულებებით.მანიპულაცია`).attr('opacity', 1).classed('.make-shadow', true)
+      .on('click', function (e, d) {
+        onNodeClick(e, d)
+      })
   })
 
   d3.select('.all-legend').on('click', function () {
     d3.selectAll('.message-box').style('opacity', 0.1)
     d3.select('.message-box.all-legend').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 1).on('click', function (e, d) {
-      isClicked = true
-      quotesOpened(d)
-      d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
-      d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
+      onNodeClick(e, d)
     })
   })
+
+
+  function onNodeClick(e, d) {
+    isClicked = true
+    quotesOpened(d)
+
+    d3.select(`#${d.id}`)
+      .select('.circle-node')
+      .attr('stroke', 'black')
+      .attr('opacity', 1)
+      .attr('r', (x) => rScale(x.amount))
+
+    d3.select('.quotes-section')
+      .style('opacity', 0)
+      .transition()
+      .duration(1000)
+      .style('opacity', 1)
+  }
 }
-
-
-
-
-
-
-
