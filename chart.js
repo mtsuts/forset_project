@@ -193,45 +193,81 @@ function forceGraph(nodes, params) {
     d3.selectAll('.message-box').style('opacity', 0.1)
     d3.select('.message-box.label').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.3)
-    d3.selectAll(`.node.იარლიყის.მიკრობა`).attr('opacity', 1)
+    d3.selectAll('.node').attr('opacity', 0.3).on('click', function () {
+      return;
+    })
+    d3.selectAll(`.node.იარლიყის.მიკრობა`).attr('opacity', 1).on('click', function (e, d) {
+      isClicked = true
+      quotesOpened(d)
+      d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
+      d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
+    })
   })
 
   d3.select('.scare-box').on('click', function () {
     d3.selectAll('.message-box').style('opacity', 0.1)
     d3.select('.message-box.scare').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.3)
-    d3.selectAll(`.node.შიშის.ჩანერგვა`).attr('opacity', 1)
+    d3.selectAll('.node').attr('opacity', 0.3).on('click', function () {
+      return;
+    })
+    d3.selectAll(`.node.შიშის.ჩანერგვა`).attr('opacity', 1).on('click', function (e, d) {
+      isClicked = true
+      quotesOpened(d)
+      d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
+      d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
+    })
   })
 
   d3.select('.infoManipulation-box').on('click', function () {
     d3.selectAll('.message-box').style('opacity', 0.1)
     d3.select('.message-box.information').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.3)
-    d3.selectAll(`.node.ინფორმაციით.მანიპულაცია`).attr('opacity', 1)
+    d3.selectAll('.node').attr('opacity', 0.3).on('click', function () {
+      return;
+    })
+    d3.selectAll(`.node.ინფორმაციით.მანიპულაცია`).attr('opacity', 1).on('click', function (e, d) {
+      isClicked = true
+      quotesOpened(d)
+      d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
+      d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
+    })
   })
 
   d3.select('.antiWestern-box').on('click', function () {
     d3.selectAll('.message-box').style('opacity', 0.1)
     d3.select('.message-box.anti-western').style('opacity', 1)
-    d3.selectAll('.node').attr('opacity', 0.3)
-    d3.selectAll(`.node.ანტიდასავლური.განწყობები`).attr('opacity', 1)
+    d3.selectAll('.node').attr('opacity', 0.3).on('click', function () {
+      return;
+    })
+    d3.selectAll(`.node.ანტიდასავლური.განწყობები`).attr('opacity', 1).on('click', function (e, d) {
+      isClicked = true
+      quotesOpened(d)
+      d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
+      d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
+    })
   })
 
   d3.select('.valueManipulation-box').on('click', function () {
     d3.selectAll('.message-box').style('opacity', 0.1)
     d3.select('.message-box.values').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.3)
-    d3.selectAll(`.node.ღირებულებებით.მანიპულაცია`).attr('opacity', 1)
+    d3.selectAll('.node').attr('opacity', 0.3).on('click', function () {
+      return;
+    })
+    d3.selectAll(`.node.ღირებულებებით.მანიპულაცია`).attr('opacity', 1).on('click', function (e, d) {
+      isClicked = true
+      quotesOpened(d)
+      d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
+      d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
+    })
   })
 
   d3.select('.all-legend').on('click', function () {
     d3.selectAll('.message-box').style('opacity', 0.1)
     d3.select('.message-box.all-legend').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 1)
-    // d3.selectAll(`.node.შიშის.ჩანერგვა`).attr('opacity', 1)
   })
-
-
 
 
 }
