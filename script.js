@@ -59,6 +59,7 @@ function init() {
       });
 
       const terminologyArray = Object.entries(terminology);
+      const engTerms = ['All', 'label-box', 'scare', 'infoManipulation_box', 'antiWestern_box', "valueManipulation_box"]
 
       const nodes = terminologyArray.map((d) => {
         return {
@@ -71,7 +72,7 @@ function init() {
           id: getRandomId(),
         };
       });
-
+      console.log(nodes)
       const container = {
         container: ".svg-div",
       };
