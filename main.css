@@ -14,7 +14,7 @@ body {
 }
 
 .svg-div {
-  height: 500px;
+  height: 460px;
 }
 
 .about-us {
@@ -45,31 +45,60 @@ body {
 }
 
 .add-message {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 30px;
   font-feature-settings: 'case' on;
 }
 
 .add-message-btn {
   color: white;
-  font-size: 20px;
-  background-color: #444444;
-  border-radius: 5px;
+  font-size: 19px;
+  background-color: #737070;
+  border-radius: 40px;
+  padding: 10px;
   border: none;
   font: bold;
   font-feature-settings: 'case' on
 }
 
+.add-message-btn:hover {
+  background-color: #444444;
+}
+
+.add-message-row {
+  text-align: center;
+}
+
+.help-text {
+  font-size: 13px;
+  font-feature-settings: 'case' on;
+}
+
 .message-rectangle {
   display: flex;
   height: 32px;
-  margin-top: 12px;
-  line-height: 1.2em;
 }
-
 
 .message-row {
   cursor: pointer;
+  height: 40px;
+}
+
+.text-center-legend {
+  text-align: center;
+  padding-top: 0px;
+  padding-bottom: 30px;
+}
+
+
+.message-box {
+  opacity: 0.3
+}
+
+.message-box.all-legend {
+  width: 16px !important;
+  background-color: #378fc1;
+  opacity: 1;
 }
 
 .message-box.label {
@@ -81,7 +110,6 @@ body {
   width: 16px !important;
   background-color: #36c1c1;
 }
-
 
 .message-box.information {
   width: 16px !important;
@@ -102,10 +130,9 @@ body {
   text-align: left;
   margin-left: 4px;
   width: 132px;
-  inline-size: 120px;
-  flex-wrap: wrap;
+  inline-size: 250px;
   font-feature-settings: 'case' on;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .circle-size-text {
@@ -184,7 +211,7 @@ body {
 
 .message-quote {
   text-align: left;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .quote-date {
@@ -198,13 +225,14 @@ body {
   opacity: 0
 }
 
+.quotes {
+  padding-top: 0px;
+}
+
 .quote-text {
   font-feature-settings: 'case' on;
 }
 
-.quote {
-  margin-bottom: 15px;
-}
 
 .tv {
   font-size: 11px;

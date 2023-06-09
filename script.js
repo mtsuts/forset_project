@@ -26,7 +26,7 @@ function init() {
           color: d.c[6].v,
         };
       });
-      
+
       let terminology = {};
 
       data.forEach((d) => {
@@ -68,7 +68,7 @@ function init() {
           quotes: d[1],
           side: d[1][0].side,
           color: d[1][0].color,
-          id: getRandomId()
+          id: getRandomId(),
         };
       });
 
@@ -79,7 +79,7 @@ function init() {
       forceGraph(nodes, container);
 
       console.log(nodes)
-     
+
     });
 }
 

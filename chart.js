@@ -48,6 +48,7 @@ function forceGraph(nodes, params) {
     .data(nodes)
     .join("g")
     .attr("class", "node")
+    .attr('opacity', 1)
     .attr('cursor', 'pointer')
     .attr('id', (d) => d.id)
 
@@ -55,13 +56,13 @@ function forceGraph(nodes, params) {
 
   node
     .append("circle")
-    .attr('class', 'circle-node')
+    .attr('class', (d) => `circle-node`)
     .attr("r", (d) => rScale(d.amount))
     .attr('fill', (d) => d.quotes[0].color)
     .attr('opacity', 0.4)
     .on('mouseover', function () {
       isClicked = false
-      d3.select(this).transition().duration("100").attr('r', (x) => rScale(x.amount + 2)).attr('opacity', 1)
+      d3.select(this).transition().duration("100").attr('r', (x) => rScale(x.amount + 1)).attr('opacity', 1)
     })
     .on('mouseout', function (d) {
       if (!isClicked) {
@@ -85,7 +86,8 @@ function forceGraph(nodes, params) {
       d3.select(this).call(wrap, r * 2, 0.35, 1.1)
     })
 
-  node.append('text')
+  node
+    .append('text')
     .attr('font-size', (d) => fontSizeScale(d.amount - 4))
     .attr('text-anchor', 'middle')
     .attr('class', 'quote-text')
@@ -101,7 +103,11 @@ function forceGraph(nodes, params) {
     })
 
 
-
+  d3.select('.label-box').on('click', function () {
+    d3.selectAll('.message-box').style('opacity', 0.2)
+    d3.select('.message-box.label').style('opacity', 1)
+    d3.selectAll('.node').attr('opacity', 0.3)
+  })
 
 
   function quotesOpened(d) {
@@ -152,7 +158,6 @@ function forceGraph(nodes, params) {
     d3.select("#terminologies").style('border-bottom-color', d.quotes[0].color)
       .html(`<div> ${d.terminology}
       
- <div class="amountOfQuotes"> (${d.quotes.length})  </div>
       
       </div>`)
 
@@ -165,7 +170,7 @@ function forceGraph(nodes, params) {
   node.on("click", function (e, d) {
     isClicked = true
     quotesOpened(d)
-    d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1)
+    d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
     d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
   });
 
@@ -178,7 +183,7 @@ function forceGraph(nodes, params) {
         "collision",
         d3
           .forceCollide()
-          .radius((d) => rScale(d.amount) + 15)
+          .radius((d) => rScale(d.amount) + 10)
           .iterations(2)
       )
       .force("x", d3.forceX().strength(0.008))

@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
     <div class="main-container container text-center">
 
         <div class="row align-items-start">
@@ -32,58 +33,14 @@
                         თუ სხვა პირების მიერ დისკრედიტაციის სამიზნის ამოცნობა.
                     </div>
                 </div>
-                <div class="row align-items-center">
-                    <div class="col-12 add-message">
-                        <button class='add-message-btn' id="add_message"> დაამატე გზავნილი</button>
-                    </div>
-                </div>
+
             </div>
             <div class="col last-update" id="last_update">
                 ბოლო განახლება:
             </div>
         </div>
-
-        <div class="row align-items-center">
-            <div class="col message-row label-box">
-                <div class="message-rectangle">
-                    <div class="message-box label"></div>
-                    <div class="text-message label"> იარლიყის მიკრობა</div>
-                </div>
-            </div>
-
-            <div class="col message-row scare-box">
-                <div class="message-rectangle">
-                    <div class="message-box scare"></div>
-                    <div class="text-message scare"> შიშის <br /> ჩანერგვა</div>
-                </div>
-            </div>
-
-            <div class="col message-row infoManipulation-box">
-                <div class="message-rectangle">
-                    <div class="message-box information"></div>
-                    <div class="text-message information"> ინფორმაციით მანიპულაცია </div>
-                </div>
-            </div>
-
-            <div class="col message-row antiWestern-box">
-                <div class="message-rectangle">
-                    <div class="message-box anti-western"></div>
-                    <div class="text-message anti-western"> ანტიდასავლური გზავნილები</div>
-                </div>
-            </div>
-
-            <div class="col message-row valueManipulation-box">
-                <div class="message-rectangle">
-                    <div class="message-box values"></div>
-                    <div class="text-message values"> ღირებულებებით მანიპულაცია</div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row align-items-center">
-            <div class="col-12 circle-size-text"> წრეების ზომა იზრდება გზავნილების რაოდენობის ზრდასთან ერთად</div>
-        </div>
+        <!-- <div class="row align-items-center">
+            <div class="col-12 circle-size-text"> წრეების ზომა იზრდება გზავნილების რაოდენობის ზრდასთან ერთად</div>       </div> -->
 
     </div>
 
@@ -92,7 +49,57 @@
         <svg class="svg"> </svg>
     </div>
 
+
     <div class="main-container container">
+        <div class="row align-items-center text-center-legend">
+            <div class="col-2 message-row all-legend text-center" data-type="all">
+                <div class="message-rectangle all-legend">
+                    <div class="message-box all-legend"></div>
+                    <div class="text-message all-legend"> ყველა <br /> მესიჯი</div>
+                </div>
+            </div>
+
+            <div class="col-2 message-row label-box" data-type="label_box">
+                <div class="message-rectangle">
+                    <div class="message-box label"></div>
+                    <div class="text-message label"> იარლიყის <br /> მიკრობა</div>
+                </div>
+            </div>
+
+            <div class="col-2 message-row scare-box" data-type="scare">
+                <div class="message-rectangle">
+                    <div class="message-box scare"></div>
+                    <div class="text-message scare"> შიშის <br /> ჩანერგვა</div>
+                </div>
+            </div>
+
+            <div class="col-2 message-row infoManipulation-box" data-type="infoManipulation_box">
+                <div class="message-rectangle">
+                    <div class="message-box information"></div>
+                    <div class="text-message information"> ინფორმაციით მანიპულაცია </div>
+                </div>
+            </div>
+
+            <div class="col-2 message-row antiWestern-box" data-type="antiWestern_box">
+                <div class="message-rectangle">
+                    <div class="message-box anti-western"></div>
+                    <div class="text-message anti-western"> ანტიდასავლური გზავნილები</div>
+                </div>
+            </div>
+
+            <div class="col-2 message-row valueManipulation-box" data-type="valueManipulation_box">
+                <div class="message-rectangle">
+                    <div class="message-box values"></div>
+                    <div class="text-message values"> ღირებულებებით მანიპულაცია</div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="main-container container quotes">
         <div class="row align-items-center quotes">
             <div class="col government">
                 ხელისუფლების წარმომადგენელი
@@ -122,6 +129,17 @@
                 <div class="vertical-space-line-black"></div>
             </div>
             <div class="col-5" id="quotes_second"> </div>
+        </div>
+    </div>
+
+    <div class="main-container container">
+        <div class="row add-message-row">
+            <div class="col-12 help-text">
+                შენც შეგიძლია დაგვეხმარო
+            </div>
+            <div class="col-12 add-message">
+                <button class='add-message-btn' id="add_message"> დაამატე გზავნილი</button>
+            </div>
         </div>
     </div>
 
