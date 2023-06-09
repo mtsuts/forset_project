@@ -59,7 +59,7 @@ function forceGraph(nodes, params) {
     .attr('class', (d) => `circle-node`)
     .attr("r", (d) => rScale(d.amount))
     .attr('fill', (d) => d.quotes[0].color)
-    .attr('opacity', 0.4)
+    .attr('opacity', 0.2)
     .on('mouseover', function () {
       isClicked = false
       d3.select(this).transition().duration("100").attr('r', (x) => rScale(x.amount + 1)).attr('opacity', 1)
@@ -163,6 +163,22 @@ function forceGraph(nodes, params) {
 
   node.on("click", function (e, d) {
     onNodeClick(e, d)
+    simulation = d3
+      .forceSimulation(nodes.filter(y => y.message !== d.message))
+      // .force("center", d3.forceCenter(metrics.width / 2, metrics.height / 2))
+      .force('charge', d3.forceManyBody().strength(5))
+      .force(
+        "collision",
+        d3
+          .forceCollide()
+          .radius(0.001)
+      )
+      .force("x", d3.forceX().strength(0.0008))
+      .force("y", d3.forceY().strength(0.09))
+      .on("tick", function ticked() {
+        node.attr("transform", (d) => `translate(${d.x}, ${d.y})`)
+      });
+    forceSimul()
   })
 
   function forceSimul() {
@@ -189,47 +205,55 @@ function forceGraph(nodes, params) {
     d3.selectAll('.message-box').style('opacity', 0.1)
     d3.select('.message-box.label').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.3)
-    d3.selectAll('.node').attr('opacity', 0.3).on('click', function () {
-      return;
-    })
-    d3.selectAll(`.node.იარლიყის.მიკრობა`).attr('opacity', 1).on('click', function (e, d) {
-      onNodeClick(e, d)
-    })
+    d3.selectAll('.node').attr('opacity', 0.3)
+      .on('click', function () {
+        return;
+      })
+    d3.selectAll(`.node.იარლიყის.მიკრობა`).attr('opacity', 1)
+      .on('click', function (e, d) {
+        onNodeClick(e, d)
+      })
   })
 
   d3.select('.scare-box').on('click', function () {
     d3.selectAll('.message-box').style('opacity', 0.1)
     d3.select('.message-box.scare').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.3)
-    d3.selectAll('.node').attr('opacity', 0.3).on('click', function () {
-      return;
-    })
-    d3.selectAll(`.node.შიშის.ჩანერგვა`).attr('opacity', 1).on('click', function (e, d) {
-      onNodeClick(e, d)
-    })
+    d3.selectAll('.node').attr('opacity', 0.3)
+      .on('click', function () {
+        return;
+      })
+    d3.selectAll(`.node.შიშის.ჩანერგვა`).attr('opacity', 1)
+      .on('click', function (e, d) {
+        onNodeClick(e, d)
+      })
   })
 
   d3.select('.infoManipulation-box').on('click', function () {
     d3.selectAll('.message-box').style('opacity', 0.1)
     d3.select('.message-box.information').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.3)
-    d3.selectAll('.node').attr('opacity', 0.3).on('click', function () {
-      return;
-    })
-    d3.selectAll(`.node.ინფორმაციით.მანიპულაცია`).attr('opacity', 1).on('click', function (e, d) {
-      onNodeClick(e, d)
-    })
+    d3.selectAll('.node').attr('opacity', 0.3)
+      .on('click', function () {
+        return;
+      })
+    d3.selectAll(`.node.ინფორმაციით.მანიპულაცია`).attr('opacity', 1)
+      .on('click', function (e, d) {
+        onNodeClick(e, d)
+      })
   })
 
   d3.select('.antiWestern-box').on('click', function () {
     d3.selectAll('.message-box').style('opacity', 0.1)
     d3.select('.message-box.anti-western').style('opacity', 1)
-    d3.selectAll('.node').attr('opacity', 0.3).on('click', function () {
-      return;
-    })
-    d3.selectAll(`.node.ანტიდასავლური.განწყობები`).attr('opacity', 1).on('click', function (e, d) {
-      onNodeClick(e, d)
-    })
+    d3.selectAll('.node').attr('opacity', 0.3)
+      .on('click', function () {
+        return;
+      })
+    d3.selectAll(`.node.ანტიდასავლური.განწყობები`).attr('opacity', 1)
+      .on('click', function (e, d) {
+        onNodeClick(e, d)
+      })
   })
 
   d3.select('.valueManipulation-box').on('click', function () {
@@ -239,7 +263,9 @@ function forceGraph(nodes, params) {
     d3.selectAll('.node').attr('opacity', 0.3).on('click', function () {
       return;
     })
-    d3.selectAll(`.node.ღირებულებებით.მანიპულაცია`).attr('opacity', 1).classed('.make-shadow', true)
+
+    d3.selectAll(`.node.ღირებულებებით.მანიპულაცია`)
+      .attr('opacity', 1)
       .on('click', function (e, d) {
         onNodeClick(e, d)
       })
@@ -248,11 +274,11 @@ function forceGraph(nodes, params) {
   d3.select('.all-legend').on('click', function () {
     d3.selectAll('.message-box').style('opacity', 0.1)
     d3.select('.message-box.all-legend').style('opacity', 1)
-    d3.selectAll('.node').attr('opacity', 1).on('click', function (e, d) {
-      onNodeClick(e, d)
-    })
+    d3.selectAll('.node').attr('opacity', 1)
+      .on('click', function (e, d) {
+        onNodeClick(e, d)
+      })
   })
-
 
   function onNodeClick(e, d) {
     isClicked = true
