@@ -266,7 +266,12 @@ function forceGraph(nodes, params) {
   d3.select('.all-legend').on('click', function () {
     d3.selectAll('.message-box').style('opacity', 0.1)
     d3.select('.message-box.all-legend').style('opacity', 1)
-    d3.selectAll('.node').attr('opacity', 1)
+    d3.selectAll('.node').attr('opacity', 1).on('click', function (e, d) {
+      isClicked = true
+      quotesOpened(d)
+      d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1).attr('r', (x) => rScale(x.amount))
+      d3.select('.quotes-section').style('opacity', 0).transition().duration(1000).style('opacity', 1)
+    })
   })
 
 
