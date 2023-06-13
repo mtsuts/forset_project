@@ -14,7 +14,7 @@ body {
 }
 
 .svg-div {
-  height: 460px;
+  height: 420px;
 }
 
 .about-us {
@@ -40,7 +40,7 @@ body {
   font-size: 16px;
   margin-top: 10px;
   color: #a29f9f;
-  width: 500px;
+  width: 1200px;
   font-feature-settings: 'case' on;
 }
 
@@ -290,4 +290,8 @@ body {
 .make-shadow {
   border: 1px solid;
   box-shadow: 500px 100px red;
+}
+
+.legend-container {
+  padding-top: 0px;
 }
