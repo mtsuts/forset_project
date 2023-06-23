@@ -306,5 +306,5 @@ body {
 }
 
 .circle-shadow {
-  filter: drop-shadow(0 0 0.75rem black)
+  filter: drop-shadow(0 0 0.75rem #E29896)
 }
