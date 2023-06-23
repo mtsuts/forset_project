@@ -103,27 +103,27 @@ body {
 
 .message-box.label {
   width: 16px !important;
-  background-color: #97c0d8;
+  background-color: #E29896;
 }
 
 .message-box.scare {
   width: 16px !important;
-  background-color: #36c1c1;
+  background-color: #AD98F9;
 }
 
 .message-box.information {
   width: 16px !important;
-  background-color: #7dceb5;
+  background-color: #7DC7BF;
 }
 
 .message-box.anti-western {
   width: 16px !important;
-  background-color: #eda6e0;
+  background-color: #8FC8F2;
 }
 
 .message-box.values {
   width: 16px !important;
-  background-color: #fcae60;
+  background-color: #F0C987;
 }
 
 .text-message {
@@ -294,4 +294,17 @@ body {
 
 .legend-container {
   padding-top: 0px;
+}
+
+/* .circle-node {
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #e78267;
+} */
+
+.logo-header {
+  margin-bottom: 2px;
+}
+
+.circle-shadow {
+  filter: drop-shadow(0 0 0.75rem black)
 }
