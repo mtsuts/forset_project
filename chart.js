@@ -66,7 +66,7 @@ function forceGraph(nodes, params) {
     })
     .on('mouseout', function (d) {
       if (!isClicked) {
-        d3.select(this).transition().duration("100").attr("r", (x) => rScale(x.amount)).attr('opacity', 0.5)
+        d3.select(this).transition().duration("100").attr("r", (x) => rScale(x.amount)).attr('opacity',  0.5)
       }
     })
 
@@ -163,18 +163,12 @@ function forceGraph(nodes, params) {
 
   quotesOpened(nodes.find(d => d.terminology === "მეორე ფრონტი"),)
 
+
+
   node.on("click", function (e, d) {
     onNodeClick(e, d)
     simulation = d3
       .forceSimulation(nodes.filter(y => y.message === d.message))
-      // .force("center", d3.forceCenter(metrics.width / 2, metrics.height / 2))
-      // .force('charge', d3.forceManyBody().strength(40))
-      // .force(
-      //   "collision",
-      //   d3
-      //     .forceCollide()
-      //     .radius(0.001)
-      // )
       .force("x", d3.forceX().strength(0.0008))
       .force("y", d3.forceY().strength(0.09))
       .on("tick", function ticked() {

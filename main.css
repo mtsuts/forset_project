@@ -88,11 +88,13 @@ body {
   text-align: center;
   padding-top: 0px;
   padding-bottom: 30px;
+  width: 850px;
+  margin-left: 40px;
 }
 
 
 .message-box {
-  opacity: 0.1
+  opacity: 0.3
 }
 
 .message-box.all-legend {
@@ -294,6 +296,7 @@ body {
 
 .legend-container {
   padding-top: 0px;
+  width: 850px;
 }
 
 /* .circle-node {
