@@ -162,14 +162,6 @@ function forceGraph(nodes, params) {
 
   node.on("click", function (e, d) {
     onNodeClick(e, d)
-    simulation = d3
-      .forceSimulation(nodes.filter(y => y.message !== d.message))
-      .force("x", d3.forceX().strength(0.0008))
-      .force("y", d3.forceY().strength(0.009))
-      .on("tick", function ticked() {
-        node.attr("transform", (d) => `translate(${d.x}, ${d.y})`)
-      });
-    forceSimul()
   })
 
   function forceSimul() {
@@ -180,17 +172,18 @@ function forceGraph(nodes, params) {
         "collision",
         d3
           .forceCollide()
-          .radius((d) => rScale(d.amount) + 10)
-          .iterations(2)
+          .radius((d) => rScale(d.amount)+5)
+          .iterations(10)
       )
-      .force("x", d3.forceX().strength(0.008))
-      .force("y", d3.forceY().strength(0.2))
+      .force('charge', d3.forceManyBody().strength(40))
+      .force("x", d3.forceX().strength(0.00008))
+      .force("y", d3.forceY().strength(0.09))
       .on("tick", function ticked() {
         node.attr("transform", (d) => `translate(${d.x}, ${d.y})`);
       });
+
   }
   forceSimul()
-
 
 
   // Click on Legend items 
@@ -285,6 +278,7 @@ function forceGraph(nodes, params) {
   })
 
   function onNodeClick(e, d) {
+    simulation.alpha(0.2).restart()
     isClicked = true
     quotesOpened(d)
 
@@ -293,7 +287,7 @@ function forceGraph(nodes, params) {
     d3.select(`#${d.id}`)
       .select('.circle-node')
       .classed('click', true)
-      .attr('opacity', 1)
+      // .attr('opacity', 1)
       .attr('r', (x) => rScale(x.amount))
       .style('filter', `drop-shadow(0 0 0.75rem ${d.color})`)
 
