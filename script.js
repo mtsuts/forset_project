@@ -12,7 +12,6 @@ function init() {
     .then((rep) => {
       const datum = JSON.parse(rep.substring(47).slice(0, -2));
       const newData = datum.table.rows;
-
       data = newData.map(function (d) {
         return {
           terminology: d.c[3].v,
@@ -40,7 +39,8 @@ function init() {
             message: d.message,
             author: d.author,
             color: d.color,
-            side: d.side
+            side: d.side,
+
           });
         } else {
           terminology[d.terminology] = [
@@ -52,7 +52,8 @@ function init() {
               message: d.message,
               author: d.author,
               color: d.color,
-              side: d.side
+              side: d.side,
+        
             },
           ];
         }

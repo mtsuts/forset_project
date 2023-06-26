@@ -119,7 +119,7 @@ function forceGraph(nodes, params) {
         .join("div")
         .attr("class", "quote")
 
-
+console.log(nodes)
       section.selectAll('div.quote').data(d.quotes).join('div')
         .html((x) =>
           `
@@ -269,14 +269,7 @@ function forceGraph(nodes, params) {
     d3.selectAll('.node').attr('opacity', 1)
       .on('click', function (e, d) {
         onNodeClick(e, d)
-        simulation = d3
-          .forceSimulation(nodes.filter(y => y.message === d.message))
-          .force("x", d3.forceX().strength(0.0008))
-          .force("y", d3.forceY().strength(0.09))
-          .on("tick", function ticked() {
-            node.attr("transform", (d) => `translate(${d.x}, ${d.y})`)
-          });
-        forceSimul()
+        simulation.alpha(0.2).restart()
       })
   })
 
