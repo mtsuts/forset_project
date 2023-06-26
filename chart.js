@@ -288,7 +288,7 @@ function forceGraph(nodes, params) {
     isClicked = true
     quotesOpened(d)
 
-    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 1.2rem transparent)`)
+    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 1.2rem transparent)`).classed('click', false)
 
     d3.select(`#${d.id}`)
       .select('.circle-node')
