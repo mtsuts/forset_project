@@ -61,13 +61,10 @@ function forceGraph(nodes, params) {
     .attr('fill', (d) => d.quotes[0].color)
     .attr('opacity', 0.2)
     .on('mouseover', function () {
-      isClicked = false
       d3.select(this).transition().duration("100").attr('r', (x) => rScale(x.amount + 1)).attr('opacity', 1)
     })
     .on('mouseout', function (d) {
-      if (!isClicked) {
-        d3.select(this).transition().duration("100").attr("r", (x) => rScale(x.amount)).attr('opacity',  0.5)
-      }
+      d3.select(this).transition().duration("100").attr("r", (x) => rScale(x.amount)).attr('opacity', 0.5)
     })
 
   node
@@ -163,14 +160,12 @@ function forceGraph(nodes, params) {
 
   quotesOpened(nodes.find(d => d.terminology === "მეორე ფრონტი"),)
 
-
-
   node.on("click", function (e, d) {
     onNodeClick(e, d)
     simulation = d3
-      .forceSimulation(nodes.filter(y => y.message === d.message))
+      .forceSimulation(nodes.filter(y => y.message !== d.message))
       .force("x", d3.forceX().strength(0.0008))
-      .force("y", d3.forceY().strength(0.09))
+      .force("y", d3.forceY().strength(0.009))
       .on("tick", function ticked() {
         node.attr("transform", (d) => `translate(${d.x}, ${d.y})`)
       });
@@ -196,10 +191,12 @@ function forceGraph(nodes, params) {
   }
   forceSimul()
 
+
+
   // Click on Legend items 
   d3.select('.label-box').on('click', function () {
     d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.75rem transparent)`)
-    d3.selectAll('.message-box').style('opacity', 0.1)
+    d3.selectAll('.message-box').style('opacity', 0.5)
     d3.select('.message-box.label').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.5)
       .on('click', function () {
@@ -213,7 +210,7 @@ function forceGraph(nodes, params) {
 
   d3.select('.scare-box').on('click', function () {
     d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.75rem transparent)`)
-    d3.selectAll('.message-box').style('opacity', 0.1)
+    d3.selectAll('.message-box').style('opacity', 0.5)
     d3.select('.message-box.scare').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.5)
       .on('click', function () {
@@ -227,7 +224,7 @@ function forceGraph(nodes, params) {
 
   d3.select('.infoManipulation-box').on('click', function () {
     d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.75rem transparent)`)
-    d3.selectAll('.message-box').style('opacity', 0.1)
+    d3.selectAll('.message-box').style('opacity', 0.5)
     d3.select('.message-box.information').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.5)
       .on('click', function () {
@@ -241,7 +238,7 @@ function forceGraph(nodes, params) {
 
   d3.select('.antiWestern-box').on('click', function () {
     d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.75rem transparent)`)
-    d3.selectAll('.message-box').style('opacity', 0.1)
+    d3.selectAll('.message-box').style('opacity', 0.5)
     d3.select('.message-box.anti-western').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.5)
       .on('click', function () {
@@ -255,10 +252,10 @@ function forceGraph(nodes, params) {
 
   d3.select('.valueManipulation-box').on('click', function () {
     d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.75rem transparent)`)
-    d3.selectAll('.message-box').style('opacity', 0.1)
+    d3.selectAll('.message-box').style('opacity', 0.5)
     d3.select('.message-box.values').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.5)
-    d3.selectAll('.node').attr('opacity', 0.3).on('click', function () {
+    d3.selectAll('.node').attr('opacity', 0.5).on('click', function () {
       return;
     })
 
@@ -271,7 +268,7 @@ function forceGraph(nodes, params) {
 
   d3.select('.all-legend').on('click', function () {
     d3.selectAll('.circle-node').classed('circle-shadow', false)
-    d3.selectAll('.message-box').style('opacity', 0.1)
+    d3.selectAll('.message-box').style('opacity', 0.5)
     d3.select('.message-box.all-legend').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 1)
       .on('click', function (e, d) {
@@ -291,13 +288,13 @@ function forceGraph(nodes, params) {
     isClicked = true
     quotesOpened(d)
 
-    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.75rem transparent)`)
+    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 1.2rem transparent)`)
 
     d3.select(`#${d.id}`)
       .select('.circle-node')
+      .classed('click', true)
       .attr('opacity', 1)
       .attr('r', (x) => rScale(x.amount))
-      // .classed('circle-shadow', true)
       .style('filter', `drop-shadow(0 0 0.75rem ${d.color})`)
 
     d3.select('.quotes-section')
@@ -306,11 +303,5 @@ function forceGraph(nodes, params) {
       .duration(1000)
       .style('opacity', 1)
   }
-
-  {/* <defs>
-   
-  </defs> */}
-
-
 
 }

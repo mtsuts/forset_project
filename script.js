@@ -72,14 +72,11 @@ function init() {
           id: getRandomId(),
         };
       });
-      console.log(nodes)
       const container = {
         container: ".svg-div",
       };
 
-      forceGraph(nodes, container);
-
-      console.log(nodes)
+      forceGraph(nodes, container)
 
     });
 }

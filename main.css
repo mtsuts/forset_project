@@ -309,5 +309,9 @@ body {
 }
 
 .circle-shadow {
-  filter: drop-shadow(0 0 0.75rem #E29896)
+  filter: drop-shadow(0 0 10rem #E29896)
+}
+
+.click {
+  opacity: 1
 }
