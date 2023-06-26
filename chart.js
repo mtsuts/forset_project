@@ -118,22 +118,25 @@ function forceGraph(nodes, params) {
         .data(d.quotes.filter(d => d.side === side))
         .join("div")
         .attr("class", "quote")
+
+
+      section.selectAll('div.quote').data(d.quotes).join('div')
         .html((x) =>
           `
-    <div class="row align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
-    <div class="col-3 message-author"> 
-    <img class="author-image" src = "./images/avatar.jpg"/> 
-    <div class='author-name'> ${x.author}</div> 
-    </div>
+  <div class="row align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
+  <div class="col-3 message-author"> 
+  <img class="author-image" src = "./images/${x.author}.jpg"/> 
+  <div class='author-name'> ${x.author}</div> 
+  </div>
+  <div class="col-9 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${colorWords(x.quote, d)}</div> </div>
+  </div>
 
-    <div class="col-9 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${colorWords(x.quote, d)}</div> </div>
-    </div>
+  <div class="d-flex quote-underline-tv align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
+  <div class='quote-underline'> </div>
+  <div class='tv ${sectionNumber === 2 ? 'pr-1' : 'pl-1'}'> <a class="tv-link" href="${x.link}" target="_blank" > ${x.tv} </a> </div> 
+  </div>
+  `)
 
-    <div class="d-flex quote-underline-tv align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
-    <div class='quote-underline'> </div>
-    <div class='tv ${sectionNumber === 2 ? 'pr-1' : 'pl-1'}'> <a class="tv-link" href="${x.link}" target="_blank" > ${x.tv} </a> </div> 
-    </div>
-    `)
     }
 
     function colorWords(quote, d) {
@@ -172,7 +175,7 @@ function forceGraph(nodes, params) {
         "collision",
         d3
           .forceCollide()
-          .radius((d) => rScale(d.amount)+5)
+          .radius((d) => rScale(d.amount) + 5)
           .iterations(10)
       )
       .force('charge', d3.forceManyBody().strength(40))
