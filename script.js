@@ -12,19 +12,22 @@ function init() {
     .then((rep) => {
       const datum = JSON.parse(rep.substring(47).slice(0, -2));
       const newData = datum.table.rows;
+
+      console.log(newData)
       data = newData.map(function (d) {
         return {
-          terminology: d.c[3].v,
+          terminology: d.c[5].v,
           author: d.c[0].v,
-          quote: d.c[1].v,
-          message: d.c[2].v,
-          date: d.c[4].v,
-          tv: d.c[5].v,
-          link: d.c[8].v,
-          side: d.c[7].v,
-          color: d.c[6].v,
+          quote: d.c[2].v,
+          message: d.c[3].v,
+          date: d.c[6].v,
+          tv: d.c[7].v,
+          link: d.c[11].v,
+          side: d.c[9].v,
+          color: d.c[8].v,
         };
       });
+
 
       let terminology = {};
 
@@ -53,7 +56,6 @@ function init() {
               author: d.author,
               color: d.color,
               side: d.side,
-        
             },
           ];
         }
@@ -61,6 +63,7 @@ function init() {
 
       const terminologyArray = Object.entries(terminology);
       const engTerms = ['All', 'label-box', 'scare', 'infoManipulation_box', 'antiWestern_box', "valueManipulation_box"]
+
 
       const nodes = terminologyArray.map((d) => {
         return {
@@ -73,9 +76,12 @@ function init() {
           id: getRandomId(),
         };
       });
+
       const container = {
         container: ".svg-div",
       };
+
+
 
       forceGraph(nodes, container)
 

@@ -5,7 +5,6 @@ function forceGraph(nodes, params) {
   let isClicked = false;
   // define metrics
 
-
   const bounding = container.node().getBoundingClientRect()
 
   const metrics = {
@@ -64,7 +63,7 @@ function forceGraph(nodes, params) {
       d3.select(this).transition().duration("100").attr('r', (x) => rScale(x.amount + 1)).attr('opacity', 1)
     })
     .on('mouseout', function (d) {
-      d3.select(this).transition().duration("100").attr("r", (x) => rScale(x.amount)).attr('opacity', 0.5)
+      d3.select(this).transition().duration("100").attr("r", (x) => isClicked === true ? rScale(x.amount + 1) : rScale(x.amount)).attr('opacity', 0.5)
     })
 
   node
@@ -99,8 +98,6 @@ function forceGraph(nodes, params) {
       d3.select(this).call(wrap, r * 2, 0.35, 1.1)
     })
 
-
-
   function quotesOpened(d) {
 
     const sideOne = 'ხელისუფლების წარმომადგენელი'
@@ -110,7 +107,11 @@ function forceGraph(nodes, params) {
     const sectionFirst = 1
     const sectionSecond = 2
 
-
+    d3.select(`#${d.id}`)
+      .select('.circle-node')
+      .classed('click', true)
+      .attr('r', (x) => rScale(x.amount))
+      .style('filter', `drop-shadow(0 0 0.75rem ${d.color})`)
 
     function sectionQuotes(section, side, sectionNumber) {
       section
@@ -119,7 +120,6 @@ function forceGraph(nodes, params) {
         .join("div")
         .attr("class", "quote")
 
-console.log(nodes)
       section.selectAll('div.quote').data(d.quotes).join('div')
         .html((x) =>
           `
@@ -152,16 +152,17 @@ console.log(nodes)
     sectionQuotes(quotes_second, sideTwo, sectionSecond)
 
     d3.select("#terminologies").style('border-bottom-color', d.quotes[0].color)
-      .html(`<div> ${d.terminology}
-      
-      
+      .html(`<div> ${d.terminology}    
       </div>`)
 
     d3.select('#message_line')
       .html(`<div> ${d.message} </div>`)
   }
 
+
   quotesOpened(nodes.find(d => d.terminology === "მეორე ფრონტი"),)
+
+
 
   node.on("click", function (e, d) {
     onNodeClick(e, d)
@@ -284,7 +285,7 @@ console.log(nodes)
       .select('.circle-node')
       .classed('click', true)
       // .attr('opacity', 1)
-      .attr('r', (x) => rScale(x.amount))
+      .attr('r', (x) => rScale(x.amount + 1))
       .style('filter', `drop-shadow(0 0 0.75rem ${d.color})`)
 
     d3.select('.quotes-section')
