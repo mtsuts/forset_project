@@ -34,7 +34,7 @@ function forceGraph(nodes, params) {
       d3.min(nodes.map((d) => d.amount)),
       d3.max(nodes.map((d) => d.amount)),
     ])
-    .range([25, 120]);
+    .range([25, 90]);
 
   const fontSizeScale = d3.scaleLinear().domain([
     d3.min(nodes.map((d => d.amount))),
@@ -63,7 +63,7 @@ function forceGraph(nodes, params) {
       d3.select(this).transition().duration("100").attr('r', (x) => rScale(x.amount + 1)).attr('opacity', 1)
     })
     .on('mouseout', function (d) {
-      d3.select(this).transition().duration("100").attr("r", (x) => isClicked === true ? rScale(x.amount + 1) : rScale(x.amount)).attr('opacity', 0.5)
+      d3.select(this).transition().duration("100").attr("r", (x) => isClicked === true ? rScale(x.amount + 0.3) : rScale(x.amount)).attr('opacity', 0.5)
     })
 
   node
@@ -120,6 +120,7 @@ function forceGraph(nodes, params) {
         .join("div")
         .attr("class", "quote")
 
+  
       section.selectAll('div.quote').data(d.quotes).join('div')
         .html((x) =>
           `
@@ -176,7 +177,7 @@ function forceGraph(nodes, params) {
         "collision",
         d3
           .forceCollide()
-          .radius((d) => rScale(d.amount) + 5)
+          .radius((d) => rScale(d.amount) + 10)
           .iterations(10)
       )
       .force('charge', d3.forceManyBody().strength(40))

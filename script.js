@@ -43,7 +43,6 @@ function init() {
             author: d.author,
             color: d.color,
             side: d.side,
-
           });
         } else {
           terminology[d.terminology] = [
