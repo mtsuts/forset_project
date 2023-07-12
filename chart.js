@@ -63,7 +63,7 @@ function forceGraph(nodes, params) {
       d3.select(this).transition().duration("100").attr('r', (x) => rScale(x.amount + 1)).attr('opacity', 1)
     })
     .on('mouseout', function (d) {
-      d3.select(this).transition().duration("100").attr("r", (x) => isClicked === true ? rScale(x.amount + 0.3) : rScale(x.amount)).attr('opacity', 0.5)
+      d3.select(this).transition().duration("100").attr("r", (x) => isClicked === true ? rScale(x.amount + 0.2) : rScale(x.amount)).attr('opacity', 0.5)
     })
 
   node
@@ -120,7 +120,7 @@ function forceGraph(nodes, params) {
         .join("div")
         .attr("class", "quote")
 
-  
+
       section.selectAll('div.quote').data(d.quotes).join('div')
         .html((x) =>
           `
