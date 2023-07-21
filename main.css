@@ -213,6 +213,7 @@ body {
   margin-top: 30px;
   font-feature-settings: 'case' on;
   text-align: center;
+  cursor: auto
 }
 
 .message-quote {
