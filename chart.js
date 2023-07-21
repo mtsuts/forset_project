@@ -60,10 +60,11 @@ function forceGraph(nodes, params) {
     .attr('fill', (d) => d.quotes[0].color)
     .attr('opacity', 0.2)
     .on('mouseover', function () {
-      d3.select(this).transition().duration("100").attr('r', (x) => rScale(x.amount + 1)).attr('opacity', 1)
+      d3.select(this).transition().duration("100").attr('opacity', 1)
     })
+    // .attr('r', (x) => rScale(x.amount + 1))
     .on('mouseout', function (d) {
-      d3.select(this).transition().duration("100").attr("r", (x) => isClicked === true ? rScale(x.amount + 0.3) : rScale(x.amount)).attr('opacity', 0.5)
+      d3.select(this).transition().duration("100").attr("r", (x) => rScale(x.amount)).attr('opacity', 0.5)
     })
 
   node
@@ -99,7 +100,7 @@ function forceGraph(nodes, params) {
     })
 
   function quotesOpened(d) {
-    const sideOne = 'ხელისუფლების წარმომადგენელი'
+    const sideOne = 'ხელისუფლების წარმომადგენლები'
     const sideTwo = 'სხვები'
     const quotes_first = d3.select('#quotes_first')
     const quotes_second = d3.select('#quotes_second')
@@ -110,7 +111,7 @@ function forceGraph(nodes, params) {
       .select('.circle-node')
       .classed('click', true)
       .attr('r', (x) => rScale(x.amount))
-      .style('filter', `drop-shadow(0 0 0.75rem ${d.color})`)
+      .style('filter', `drop-shadow(0 0 0.90rem ${d.color})`)
 
     function sectionQuotes(section, side, sectionNumber) {
       section
@@ -118,31 +119,30 @@ function forceGraph(nodes, params) {
         .data(d.quotes.filter(d => d.side === side))
         .join("div")
         .attr("class", "quote")
-
-      section.selectAll('div.quote').data(d.quotes).join('div')
         .html((x) =>
           `
-  <div class="row align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
-  <div class="col-3 message-author ${x.id}" id="author_regalia"> 
-  <img class="author-image" src = "./images/${x.author}.jpg"/> 
-  <div class='author-name'> ${x.author}</div> 
-  </div>
-  <div class="col-9 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${colorWords(x.quote, d)}</div> </div>
-  </div>
+    <div class="row align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
+    
+    <div class="col-3 message-author"> <img class="author-image" src = "./images/${x.author}.jpg"> </img> 
+    <div class='author-name'> ${x.author}</div> 
+    </div>
 
-  <div class="d-flex quote-underline-tv align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
-  <div class='quote-underline'> </div>
-  <div class='tv ${sectionNumber === 2 ? 'pr-1' : 'pl-1'}'> <a class="tv-link" href="${x.link}" target="_blank" > ${x.tv} </a> </div> 
-  </div>
-  `)
+    <div class="col-9 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${colorWords(x.quote, d)}</div> </div>
+    </div>
+
+    <div class="d-flex quote-underline-tv align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
+    <div class='quote-underline'> </div>
+    <div class='tv ${sectionNumber === 2 ? 'pr-1' : 'pl-1'}'> <a class="tv-link" href="${x.link}" target="_blank" > ${x.tv} </a> </div> 
+    </div>
+    `)
     }
+
     function colorWords(quote, d) {
       return quote.replaceAll(`${d.terminology}`, `<span style="background-color: ${d.color}; opacity: 0.6"> ${d.terminology} </span>`)
     }
     d3.selectAll('.circle-node').attr('stroke', 'none').attr('opacity', 0.5)
 
     d3.select('.quotes-section').transition().duration(1000).style('opacity', 1)
-    // d3.select(`#${d.id}`).select('.circle-node').attr('stroke', 'black').attr('opacity', 1)
 
     sectionQuotes(quotes_first, sideOne, sectionFirst)
     sectionQuotes(quotes_second, sideTwo, sectionSecond)
@@ -154,21 +154,17 @@ function forceGraph(nodes, params) {
     d3.select('#message_line')
       .html(`<div> ${d.message} </div>`)
 
-    console.log(d)
-    d3.select(`.message-author`).on('mouseover', function () {
-      tippy(`#author_regalia`, {
-        content: `${d.regalia}`,
-        allowHTML: true,
-        arrow: false
-      })
+    d3.selectAll('.message-author').on('mouseover', function () {
+      console.log('test')
     })
 
   }
 
-  quotesOpened(nodes.find(d => d.terminology === "მეორე ფრონტი"),)
+  quotesOpened(nodes.find(d => d.terminology === "ევროპარლამენტი"),)
 
   node.on("click", function (e, d) {
     onNodeClick(e, d)
+    quotesOpened(d)
   })
 
   function forceSimul() {
@@ -194,7 +190,7 @@ function forceGraph(nodes, params) {
 
   // Click on Legend items 
   d3.select('.label-box').on('click', function () {
-    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.75rem transparent)`)
+    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.90rem transparent)`)
     d3.selectAll('.message-box').style('opacity', 0.5)
     d3.select('.message-box.label').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.5)
@@ -214,7 +210,7 @@ function forceGraph(nodes, params) {
   })
 
   d3.select('.scare-box').on('click', function () {
-    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.75rem transparent)`)
+    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.90rem transparent)`)
     d3.selectAll('.message-box').style('opacity', 0.5)
     d3.select('.message-box.scare').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.5)
@@ -234,7 +230,7 @@ function forceGraph(nodes, params) {
   })
 
   d3.select('.infoManipulation-box').on('click', function () {
-    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.75rem transparent)`)
+    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.90rem transparent)`)
     d3.selectAll('.message-box').style('opacity', 0.5)
     d3.select('.message-box.information').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.5)
@@ -254,7 +250,7 @@ function forceGraph(nodes, params) {
   })
 
   d3.select('.antiWestern-box').on('click', function () {
-    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.75rem transparent)`)
+    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.90rem transparent)`)
     d3.selectAll('.message-box').style('opacity', 0.5)
     d3.select('.message-box.anti-western').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.5)
@@ -275,7 +271,7 @@ function forceGraph(nodes, params) {
   })
 
   d3.select('.valueManipulation-box').on('click', function () {
-    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.75rem transparent)`)
+    d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.90rem transparent)`)
     d3.selectAll('.message-box').style('opacity', 0.5)
     d3.select('.message-box.values').style('opacity', 1)
     d3.selectAll('.node').attr('opacity', 0.5)
@@ -310,16 +306,14 @@ function forceGraph(nodes, params) {
   function onNodeClick(e, d) {
     simulation.alpha(0.2).restart()
     isClicked = true
-    quotesOpened(d)
-
     d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 1.2rem transparent)`).classed('click', false)
+    quotesOpened(d)
 
     d3.select(`#${d.id}`)
       .select('.circle-node')
       .classed('click', true)
-      // .attr('opacity', 1)
-      .attr('r', (x) => rScale(x.amount + 1))
-      .style('filter', `drop-shadow(0 0 0.75rem ${d.color})`)
+      .attr('r', (x) => rScale(x.amount + 10))
+      .style('filter', `drop-shadow(0 0 0.90rem ${d.color})`)
 
     d3.select('.quotes-section')
       .style('opacity', 0)
@@ -327,7 +321,4 @@ function forceGraph(nodes, params) {
       .duration(1000)
       .style('opacity', 1)
   }
-
-
-
 }
