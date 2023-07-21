@@ -155,7 +155,6 @@ function forceGraph(nodes, params) {
 
     d3.selectAll(`.message-author`).each(function () {
       tippy('[data-tippy-content]', {
-        content: `${d.regalia}`,
         arrow: false
       })
     })
