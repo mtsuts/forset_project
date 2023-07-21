@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=990">
     <meta property="og:image" content="./images/home.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
     <link rel="icon" type="image/x-icon" href="./images/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -20,8 +25,10 @@
     <div class="main-container container text-center">
 
         <div class="row align-items-start">
-            <div class="col about-us" id="about_us">
+            <div class="col about-us" id="about_us" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> -->
                 ჩვენ შესახებ
+                <!-- </button> -->
             </div>
             <div class="col last-update" id="last_update">
                 Მონაცემები შეგროვებულია:
@@ -60,48 +67,57 @@
     <div class="main-container container legend-container">
         <div class="row align-items-center text-center-legend">
             <div class="col-2 message-row all-legend text-center" data-type="all">
-                <div class="message-rectangle all-legend">
+                <div class="message-rectangle all-legend" id="all_legend">
                     <div class="message-box all-legend"></div>
                     <div class="text-message all-legend"> ყველა <br /> მესიჯი</div>
                 </div>
             </div>
 
-            <div class="col-2 message-row label-box" data-type="label_box">
+            <div class="col-2 message-row label-box" id="label_box" data-type="label_box">
                 <div class="message-rectangle">
                     <div class="message-box label"></div>
                     <div class="text-message label"> იარლიყის <br /> მიკრობა</div>
                 </div>
             </div>
 
-            <div class="col-2 message-row scare-box" data-type="scare">
+            <div class="col-2 message-row scare-box" id="scare_box" data-type="scare">
                 <div class="message-rectangle">
                     <div class="message-box scare"></div>
                     <div class="text-message scare"> შიშის <br /> ჩანერგვა</div>
                 </div>
             </div>
 
-            <div class="col-2 message-row infoManipulation-box" data-type="infoManipulation_box">
+            <div class="col-2 message-row infoManipulation-box" id='infoManipulation_box'
+                data-type="infoManipulation_box">
                 <div class="message-rectangle">
                     <div class="message-box information"></div>
-                    <div class="text-message information"> ინფორმაციით მანიპულაცია </div>
+                    <div class="text-message information"> ინფორმაციის გაყალბება </div>
                 </div>
             </div>
 
-            <div class="col-2 message-row antiWestern-box" data-type="antiWestern_box">
+            <div class="col-2 message-row antiWestern-box" id="antiWestern_box" data-type="antiWestern_box">
                 <div class="message-rectangle">
                     <div class="message-box anti-western"></div>
                     <div class="text-message anti-western"> ანტიდასავლური განწყობები</div>
                 </div>
             </div>
 
-            <div class="col-2 message-row valueManipulation-box" data-type="valueManipulation_box">
+            <div class="col-2 message-row valueManipulation-box" id='valueManipulation_box'
+                data-type="valueManipulation_box">
                 <div class="message-rectangle">
                     <div class="message-box values"></div>
                     <div class="text-message values"> ღირებულებებით მანიპულაცია</div>
                 </div>
             </div>
         </div>
+        <!-- <div class="col-12 help-text">
+            შენც შეგიძლია დაგვეხმარო
+        </div> -->
 
+        <button class='add-message-btn' id="add_message"> <a
+                href='https://docs.google.com/forms/d/1OU5KuWIDMCIvEwvCxgiKu5jz0kHt0UvofvVQp9TiDQ8/edit'
+                target="_blank">დაამატე
+                გზავნილი </a></button>
     </div>
 
     <div class="main-container container quotes">
@@ -139,24 +155,134 @@
 
     <div class="main-container container">
         <div class="row add-message-row">
-            <div class="col-12 help-text">
+            <!-- <div class="col-12 help-text">
                 შენც შეგიძლია დაგვეხმარო
-            </div>
-            <div class="col-12 add-message">
-                <button class='add-message-btn' id="add_message"> დაამატე გზავნილი</button>
+            </div> -->
+            <!-- <div class="col-12 add-message">
+                <button class='add-message-btn' id="add_message"> <a
+                        href='https://docs.google.com/forms/d/1OU5KuWIDMCIvEwvCxgiKu5jz0kHt0UvofvVQp9TiDQ8/edit'
+                        target="_blank">დაამატე
+                        გზავნილი </a></button>
+            </div> -->
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">ჩვენ შესახებ</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="bold"> რა არის “გზავნილი”?</div>
+                        <br>
+                        "სათქმელი" არის “მედიაჩეკერის”, “პროექტ 64-ისა” და “ფორსეტის” ერთობლივი მოხალისეობრივი პროექტი,
+                        რომელიც ერთ სივრცეში უყრის თავს ხელისუფლების პროპაგანდისტულ გზავნილებს. ჩვენი მიზანია ე.წ
+                        "მესიჯბოქსების" გაერთიანებით, ტენდენციების დადგენა და ამ მონაცემებზე დაყრდნობით, პოლიტიკოსებისა
+                        თუ სხვა პირების მიერ დისკრედიტაციის სამიზნის ამოცნობა.
+                        <br> <br>
+                        <div class="bold"> რა პრობლემაა? </div>
+                        <br>
+                        2023 წლის მარტში საქართველოში მასობრივი საპროტესტო გამოსვლები დაიწყო “უცხოური გავლენების
+                        შესახებ” კანონპროექტის წინააღმდეგ. ეს კანონპროექტი “უცხოეთის აგენტად” აცხადებდა ყველა სამოქალაქო
+                        ორგანიზაციას თუ მედიას, რომელიც 20%-ით მაინც ფინანსდება უცხოური გრანტებისგან, რაც პრაქტიკაში
+                        ნიშნავდა ყველა იმ მედიისა თუ ორგანიზაციის დიკრედიტაციას, რომელიც ქვეყანის დემოკრატიული
+                        განვითარებისთვის მუშაობს.
+                        <br>
+                        კანონპროექტი ჩავარდა, თუმცა კრიტიკული ხმების მარგინალიზაცია ამით არ დასრულებულა. პირიქით,
+                        კამპანია კიდევ უფრო გაძლიერდა და მასშტაბური სახე მიიღო.
+                        <br>
+                        ხელისუფლების წარმომადგენლები და მათი მხარდამჭერები ყოველდღიურად, მიზანმიმართულად ავრცელებენ
+                        განცხადებებს, რომლებიც მიმართულია სხვადასხვა ჯუფის, მოძრაობისა თუ ინდივიდის დიკსრედიტაციისკენ.
+                        <br>
+                        "სათქმელი" ერთ სივრცეში უყრის თავს ხელისუფლების პროპაგანდისტულ გზავნილებს. ჩვენი მიზანია ე.წ
+                        "მესიჯბოქსების" გაერთიანებით, ტენდენციების დადგენა და ამ მონაცემებზე დაყრდნობით, პოლიტიკოსებისა
+                        თუ სხვა პირების მიერ დისკრედიტაციის სამიზნის ამოცნობა.
+                        <br> <br>
+                        <div class="bold"> მეთოდოლოგია </div>
+                        <br> 
+                        პროექტზე მომუშავე ჯგუფმა შეკრიბა და გააანალიზა ხელისუფლების წარმომადგენლების, მათი
+                        მხარდამჭერებისა და სხვა ჯგუფების განცხადებები 2023 წლის იანვრიდან მარტის ჩათვლით.
+                        <br> <br>
+                        პროპაგანდისტული გზავნილები პირობითად დაჯგუფებულია ხუთ სხვადასხვა მესიჯბოქსში, რომლებიცდ საიტზე
+                        სხვადასხვა ფერის ბურთებით არის გამოსახული. ხოლო ბურთების სიდიდე იზრდება იმის მიხედვით, თუ
+                        რამდენჯერ გამოიყენეს ესათუ ის გზავნილი სხვადასხვა განცხადებაში.
+
+                        <br> <br>
+                        <div class="bold"> რატომ ეს პერიოდი? </div>
+                        <br> 
+                        2023 წლის პირველი სასმი თვე არის “უცხოური გავლენების შესახებ” კანონპროექტის წარდგენის წინა და
+                        მისი ჩავარდნის შემდეგი პერიოდი, როდესაც განსაკუთრებით გამოიკვეთა ანტიდასავლური და
+                        ანტიდემოკრატიული კამპანიები.
+                        <br> <br>
+                        <div class="bold"> როგორ შევარჩიეთ განცხადებები? </div>
+                        <br> 
+                        პროექტის გუნდი აკვრიდებოდა და აანალიზებდა ტერმინებს, რომლებიც მუდმივად მეორდებოდა და დღემდე
+                        მეორდება ხელისუფლების წამრომადგენლებისა და მათი მხარდამჭერების გამოსვლებში.
+                        <br> <br>
+                        კამპანია მოიცავს პროპაგანდის სხვადასხვა ფორმას, თუმცა ასობით განცხადების ანალიზმა გამოკვეთა
+                        რამდენიმე მიმართულება, მათ შორის ფაქტების გაყალბება, დეზინფორმაცია, ანტიდასავლური და პრორუსული
+                        გავლენები, საზოგადოებაში შიშის ჩანერგვა და ოპონენტებისთვის სხვადასხვა ნეგატიური იარლიყის
+                        მიკრობა.
+                        <br> <br>
+                        <div class="bold"> პროექტის მიზანი </div>
+                        <br>
+                        ამ გვერდზე თავმოყრილი და დაჯგუფებულია განცხადებები, რომლებსაც საერთო გზავნილი, ტერმინი ან
+                        ხასიათი აერთიანებს.
+                        <br> <br>
+                        ჩვენი მიზანია, ერთ სივრცეში მოვუყაროთ თავი ამ განცხადებებს, რათა საზოგადოებისთვის უკეთ იყოს
+                        აღსაქმელი პროპაგანდისტული კამპანიის მასშტაბურობა.
+                        <br> <br>
+                        <div class="bold"> პროექტის გუნდი </div>
+                        <br>
+                        “გზავნილი” არის მოხალისეობრივი პროექტი, რომელზეც იმუშავა “მედიაჩეკერის” “პროექტ 64”-ისა და
+                        “ფორსეტის” გუნდმა.
+                        <br>
+                        “მედიაჩეკერი” არის მედიის ანალიზისა და კრიტიკსი პლატფორმა, რომელიც “საქართველოს ჟურნალისტური
+                        ეთიკის ქარტიის” პროექტის ფარგლებში მუშაობს საქართველოში მედიის, სიტყვისა და გამოხატვის
+                        თავისუფლების ამაღლებაზე.
+                        <br>
+                        “პროექტი 64” განმარტებითი ჟურნალისტიკის პლატფორმაა, რომლის მიზანია, ახსნას საქართველოსა და
+                        მსოფლიოში მიმდინარე მოვლენები მარტივად და გასაგებად.
+                        <br>
+                        “ფორსეტი” არის შემოქმედებითი ორგანიზაცია, რომელიც მონაცემების, დიზაინისა და ტექონოლოგიების
+                        გამოყენებით, ეხმარება სოციალურ თემებზე მომუშავე ადამიანებსა და ორგანიზაციებს გაძლიერებასა და
+                        კომუნიკაციის ეფექტურობის გაზრდაში.
+                        <br> <br>
+                        <div class="bold"> რედაქტორი: </div>
+                        გიორგი გოგუა - 64/მედიაჩეკერი
+                        <br> <br>
+                        <div class="bold"> მკვლევარი ჟურნალისტები: </div>
+                        თამარ თოიძე - მედიაჩეკერი
+                        ელენე ზაქაშვილი - მედიაჩეკერი
+                        <br> <br>
+                        <div class="bold"> ვიზუალი: </div>
+                        იანა ყორბეზაშვილი - 64
+                        გვანცა კვანტალიანი - 64/მედიაჩეკერი
+                        <br> <br>
+                        <div class="bold"> ვებ-დეველოპერი: </div>
+                        მარიამ ცუცქირიძე - ფორსეტი
+                        <br> <br>
+                        <div class="bold"> მონაცემთა დიზაინი: </div>
+                        ირაკლი ჭუმბურიძე - ფორსეტი
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
 
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3plus@2"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="./utils.js"></script>
     <script src="./chart.js"> </script>
     <script src="./script.js"> </script>
+
 </body>
 
 </html>

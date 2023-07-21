@@ -13,7 +13,6 @@ function init() {
       const datum = JSON.parse(rep.substring(47).slice(0, -2));
       const newData = datum.table.rows;
 
-      console.log(newData)
       data = newData.map(function (d) {
         return {
           terminology: d.c[5].v,
@@ -25,6 +24,8 @@ function init() {
           link: d.c[11].v,
           side: d.c[9].v,
           color: d.c[8].v,
+          regalia: d.c[1].v,
+          definition: d.c[4].v
         };
       });
 
@@ -43,6 +44,8 @@ function init() {
             author: d.author,
             color: d.color,
             side: d.side,
+            regalia: d.regalia,
+            definition: d.definition
           });
         } else {
           terminology[d.terminology] = [
@@ -55,6 +58,8 @@ function init() {
               author: d.author,
               color: d.color,
               side: d.side,
+              regalia: d.regalia,
+              definition: d.definition
             },
           ];
         }
@@ -73,16 +78,18 @@ function init() {
           side: d[1][0].side,
           color: d[1][0].color,
           id: getRandomId(),
+          regalia: d[1][0].regalia,
+          definition: d[1][0].definition
         };
       });
 
+      console.log(nodes)
       const container = {
         container: ".svg-div",
       };
 
-
-
       forceGraph(nodes, container)
+
 
     });
 }

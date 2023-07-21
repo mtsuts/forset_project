@@ -14,13 +14,14 @@ body {
 }
 
 .svg-div {
-  height: 420px;
+  height: 490px;
 }
 
 .about-us {
   font-size: 15px;
   text-align: left;
   font-feature-settings: 'case' on;
+  cursor: pointer;
 }
 
 .last-update {
@@ -52,13 +53,16 @@ body {
 
 .add-message-btn {
   color: white;
-  font-size: 19px;
+  font-size: 13px;
   background-color: #737070;
   border-radius: 40px;
   padding: 10px;
   border: none;
   font: bold;
-  font-feature-settings: 'case' on
+  font-feature-settings: 'case' on;
+  position: fixed;
+  top: 750px;
+  right: 50px
 }
 
 .add-message-btn:hover {
@@ -314,4 +318,19 @@ body {
 
 .click {
   opacity: 1
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.tippy-content {
+  background-color: #fffaf6;
+  color: black;
+  font-size: 10px;
+}
+
+.bold {
+  font-weight: bolder
 }

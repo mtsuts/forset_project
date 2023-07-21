@@ -99,7 +99,6 @@ function forceGraph(nodes, params) {
     })
 
   function quotesOpened(d) {
-
     const sideOne = 'ხელისუფლების წარმომადგენელი'
     const sideTwo = 'სხვები'
     const quotes_first = d3.select('#quotes_first')
@@ -120,12 +119,11 @@ function forceGraph(nodes, params) {
         .join("div")
         .attr("class", "quote")
 
-  
       section.selectAll('div.quote').data(d.quotes).join('div')
         .html((x) =>
           `
   <div class="row align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
-  <div class="col-3 message-author"> 
+  <div class="col-3 message-author ${x.id}" id="author_regalia"> 
   <img class="author-image" src = "./images/${x.author}.jpg"/> 
   <div class='author-name'> ${x.author}</div> 
   </div>
@@ -137,12 +135,9 @@ function forceGraph(nodes, params) {
   <div class='tv ${sectionNumber === 2 ? 'pr-1' : 'pl-1'}'> <a class="tv-link" href="${x.link}" target="_blank" > ${x.tv} </a> </div> 
   </div>
   `)
-
     }
-
     function colorWords(quote, d) {
       return quote.replaceAll(`${d.terminology}`, `<span style="background-color: ${d.color}; opacity: 0.6"> ${d.terminology} </span>`)
-
     }
     d3.selectAll('.circle-node').attr('stroke', 'none').attr('opacity', 0.5)
 
@@ -158,12 +153,19 @@ function forceGraph(nodes, params) {
 
     d3.select('#message_line')
       .html(`<div> ${d.message} </div>`)
+
+    console.log(d)
+    d3.select(`.message-author`).on('mouseover', function () {
+      tippy(`#author_regalia`, {
+        content: `${d.regalia}`,
+        allowHTML: true,
+        arrow: false
+      })
+    })
+
   }
 
-
   quotesOpened(nodes.find(d => d.terminology === "მეორე ფრონტი"),)
-
-
 
   node.on("click", function (e, d) {
     onNodeClick(e, d)
@@ -190,7 +192,6 @@ function forceGraph(nodes, params) {
   }
   forceSimul()
 
-
   // Click on Legend items 
   d3.select('.label-box').on('click', function () {
     d3.selectAll('.circle-node').style('filter', `drop-shadow(0 0 0.75rem transparent)`)
@@ -204,6 +205,12 @@ function forceGraph(nodes, params) {
       .on('click', function (e, d) {
         onNodeClick(e, d)
       })
+  }).on('mouseover', function () {
+    tippy("#label_box", {
+      content: `იარლიყის მიკრობა პროპაგანდის ერთ-ერთი ყველაზე გავრცელებული იარაღია. მას იყენებენ ოპონენტებისთვის ნეგატიურად წარმოსაჩენად. ეს იარლიყები, ძირითად შემთხვევაში მოკლებულია საფუძველს და ემყარება მხოლოდ საზოგადოებაში დამკვიდებულ შეხედულებებსა და განწყობებს.`,
+      placement: 'left',
+      arrow: false
+    })
   })
 
   d3.select('.scare-box').on('click', function () {
@@ -218,6 +225,12 @@ function forceGraph(nodes, params) {
       .on('click', function (e, d) {
         onNodeClick(e, d)
       })
+  }).on('mouseover', function () {
+    tippy('#scare_box', {
+      placement: 'left',
+      arrow: false,
+      content: `შიშის ჩანერგვა იარლიყის მიკრობის ერთ-ერთი ხერხია. ის ემსახურება ხალხში მცდარი აზრის გავრცელებას და ძირითადად მანიპულირებს საზოგადოებაში დამკვიდრებული რწმენებითა და შეხედულებებით. ამ გზით, პროპაგანდისტები წინასწარ ავრცელებენ აზრს, რომ თუ ყველაფერი მათი სცენარით არ განვითარდა, რაღაც ცუდი მოხდება. `
+    })
   })
 
   d3.select('.infoManipulation-box').on('click', function () {
@@ -228,10 +241,16 @@ function forceGraph(nodes, params) {
       .on('click', function () {
         return;
       })
-    d3.selectAll(`.node.ინფორმაციით.მანიპულაცია`).attr('opacity', 1)
+    d3.selectAll(`.node.ინფორმაციის.გაყალბება`).attr('opacity', 1)
       .on('click', function (e, d) {
         onNodeClick(e, d)
       })
+  }).on('mouseover', function () {
+    tippy(`#infoManipulation_box`, {
+      placement: 'left',
+      arrow: false,
+      content: `ინფორმაციის გაყალბება შეიძლება სხვადასხვაგვარი იყოს, მაგალითად დეზინფორმაცია, მისინფორმაცია, მალინფორმაცია და ა.შ. ყველა შემთხვევაში, ეს არის გზა, მცდარი ამბავი გაავრცელო და იმის იმედით, რომ ინფორმაციას არავინ გადაამოწმებს, საზოგადოებას სხვადასხვა საკითხზე შეუქმნა ისეთი წარმოდგენა, როგორიც თავად გაწყობს.`
+    })
   })
 
   d3.select('.antiWestern-box').on('click', function () {
@@ -246,6 +265,13 @@ function forceGraph(nodes, params) {
       .on('click', function (e, d) {
         onNodeClick(e, d)
       })
+  }).on('mouseover', function () {
+    tippy(`#antiWestern_box`, {
+      placement: 'left',
+      arrow: false,
+      content: `სახელმწიფო უსაფრთხოების სამსახურის ანგარიშების მიხედვით, საქართველოს ერთ-ერთი უმთავრესი გამოწვევა რუსული პროპაგანდაა, რომელიც უმთავრესად ქვეყანაში ანტიდასავლური განწყობების ჩამოყალიბებას ემსახურება და მისი მიზანი ქვეყნის ევროინტეგრაციის პროცესის ხელის შეშლაა. ამაში შედის როგორც პრო-რუსული ასევე აშშ-ის, ევროკავშირის და ნატოს საწინააღმდეგო გზავნილები.
+      `
+    })
   })
 
   d3.select('.valueManipulation-box').on('click', function () {
@@ -262,6 +288,12 @@ function forceGraph(nodes, params) {
       .on('click', function (e, d) {
         onNodeClick(e, d)
       })
+  }).on('mouseover', function () {
+    tippy('#valueManipulation_box', {
+      content: `ღირებულებებით მანიპულაცია შეიძლება ამ საიტზე მოცემულ ყველა პროპაგანდისტულ ხერხს მოიცავდეს, თუმცა ის ცალკე გამოვყავით, რადგან საქართველოში ეს კარგად გამოცდილი პროპაგანდისტული ხერხია. ამ დროს პოპაგანდისტები ცდილობენ, საკუთრი მიზნის მისაღწევან დაგვარწმუნონ, რომ ესა თუ ის პოლიტიკური პროცესი ჩვენს ეროვნულ თუ რელიგიურ იდენტობას აზიანებს.`,
+      placement: 'left',
+      arrow: false,
+    })
   })
 
   d3.select('.all-legend').on('click', function () {
@@ -295,5 +327,7 @@ function forceGraph(nodes, params) {
       .duration(1000)
       .style('opacity', 1)
   }
+
+
 
 }
