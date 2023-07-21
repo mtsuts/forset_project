@@ -79,7 +79,8 @@ function init() {
           color: d[1][0].color,
           id: getRandomId(),
           regalia: d[1][0].regalia,
-          definition: d[1][0].definition
+          definition: d[1][0].definition,
+          idAuthor: getRandomId()
         };
       });
 

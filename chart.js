@@ -123,13 +123,11 @@ function forceGraph(nodes, params) {
           `
     <div class="row align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
     
-    <div class="col-3 message-author"> <img class="author-image" src = "./images/${x.author}.jpg"> </img> 
+    <div class="col-3 message-author" data-tippy-content="${x.regalia}"> <img class="author-image" src = "./images/${x.author}.jpg"> </img> 
     <div class='author-name'> ${x.author}</div> 
     </div>
-
     <div class="col-9 message-quote"> <div class='quote-date'>${formatTime(x.date)}</div> <div>${colorWords(x.quote, d)}</div> </div>
     </div>
-
     <div class="d-flex quote-underline-tv align-items-start ${sectionNumber === 2 ? 'flex-row-reverse' : ''}"> 
     <div class='quote-underline'> </div>
     <div class='tv ${sectionNumber === 2 ? 'pr-1' : 'pl-1'}'> <a class="tv-link" href="${x.link}" target="_blank" > ${x.tv} </a> </div> 
@@ -154,10 +152,13 @@ function forceGraph(nodes, params) {
     d3.select('#message_line')
       .html(`<div> ${d.message} </div>`)
 
-    d3.selectAll('.message-author').on('mouseover', function () {
-      console.log('test')
-    })
 
+    d3.selectAll(`.message-author`).each(function () {
+      tippy('[data-tippy-content]', {
+        content: `${d.regalia}`,
+        arrow: false
+      })
+    })
   }
 
   quotesOpened(nodes.find(d => d.terminology === "ევროპარლამენტი"),)
