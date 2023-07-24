@@ -176,7 +176,8 @@ body {
   border-bottom-style: solid;
   transform: translateY(14px);
   font-feature-settings: 'case' on;
-  text-align: center
+  text-align: center;
+  line-height: 29px
 }
 
 .message-line {
