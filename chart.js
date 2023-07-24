@@ -104,7 +104,7 @@ function forceGraph(nodes, params) {
       if (d.terminology === 'გლობალური ომის პარტია') {
         return 21
       } if (d.terminology.split(' ').length > 1) {
-        return 19
+        return 20
       } else {
         return 10
       }
