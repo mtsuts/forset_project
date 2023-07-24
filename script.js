@@ -12,7 +12,7 @@ function init() {
     .then((rep) => {
       const datum = JSON.parse(rep.substring(47).slice(0, -2));
       const newData = datum.table.rows;
-
+      console.log(newData)
       data = newData.map(function (d) {
         return {
           terminology: d.c[5].v,
@@ -25,7 +25,8 @@ function init() {
           side: d.c[9].v,
           color: d.c[8].v,
           regalia: d.c[1].v,
-          definition: d.c[4].v
+          definition: d.c[4].v,
+          photo: d.c[10].v,
         };
       });
 
@@ -45,7 +46,8 @@ function init() {
             color: d.color,
             side: d.side,
             regalia: d.regalia,
-            definition: d.definition
+            definition: d.definition,
+            photo: d.photo
           });
         } else {
           terminology[d.terminology] = [
@@ -59,7 +61,8 @@ function init() {
               color: d.color,
               side: d.side,
               regalia: d.regalia,
-              definition: d.definition
+              definition: d.definition,
+              photo: d.photo
             },
           ];
         }
@@ -80,7 +83,8 @@ function init() {
           id: getRandomId(),
           regalia: d[1][0].regalia,
           definition: d[1][0].definition,
-          idAuthor: getRandomId()
+          idAuthor: getRandomId(),
+          photo: d[1][0].photo
         };
       });
 

@@ -61,7 +61,7 @@ body {
   font: bold;
   font-feature-settings: 'case' on;
   position: fixed;
-  top: 755px;
+  top: 740px;
   right: 50px
 }
 
@@ -331,11 +331,19 @@ a {
 }
 
 .tippy-content {
-  background-color: #fffaf6;
+  background-color: #ffffff;
   color: black;
   font-size: 10px;
 }
 
+.tippy-box[data-theme~="custom"] {
+  box-shadow: rgba(231, 220, 220, 0.35) 6.4px 6.4px 6.4px 6.4px;
+}
+
 .bold {
   font-weight: bolder
+}
+
+.modal-body {
+  padding: 20px 120px 20px 120px
 }
